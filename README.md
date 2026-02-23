@@ -359,7 +359,3 @@ This is an assessment project for educational purposes.
 
 ---
 
-**Created for:** TechCorp Month 1 Assessment  
-**Date:** February 2026  
-**Infrastructure as Code:** Terraform  
-**Cloud Provider:** AWS
