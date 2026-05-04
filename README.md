@@ -272,78 +272,7 @@ If `terraform destroy` fails, manually delete in this order:
 aws ec2 describe-vpcs --filters "Name=tag:Name,Values=techcorp-vpc"
 ```
 
-## Cost Estimation
-
-Approximate monthly costs (us-east-1):
-- EC2 Instances (4x t3.micro, 1x t3.small): ~$35/month
-- NAT Gateways (2x): ~$65/month
-- Application Load Balancer: ~$23/month
-- Data Transfer: Varies based on usage
-- **Total: ~$123/month**
-
 💡 **Tip:** Run `terraform destroy` when not in use to avoid charges!
-
-## Submission Checklist
-
-- [ ] All Terraform files created and organized
-- [ ] Infrastructure successfully deployed
-- [ ] Screenshot: `terraform plan` output
-- [ ] Screenshot: `terraform apply` completion
-- [ ] Screenshot: AWS Console showing VPC and subnets
-- [ ] Screenshot: AWS Console showing EC2 instances
-- [ ] Screenshot: AWS Console showing Load Balancer
-- [ ] Screenshot: Web page served through ALB (showing instance ID)
-- [ ] Screenshot: SSH to bastion host
-- [ ] Screenshot: SSH from bastion to web server
-- [ ] Screenshot: SSH from bastion to database server
-- [ ] Screenshot: PostgreSQL connection and query results
-- [ ] Export terraform.tfstate (ensure no sensitive data)
-- [ ] Create GitHub repository: `month-one-assessment`
-- [ ] Upload all files following required structure
-
-## Evidence Screenshots Guide
-
-### 1. Terraform Plan
-```bash
-terraform plan > plan_output.txt
-# Take screenshot of the plan summary
-```
-
-### 2. Terraform Apply
-```bash
-terraform apply
-# Screenshot showing "Apply complete! Resources: XX added"
-```
-
-### 3. AWS Console Screenshots
-- EC2 Dashboard showing all instances running
-- VPC Dashboard showing subnets
-- Load Balancer showing healthy targets
-- Security Groups showing proper rules
-
-### 4. Application Access
-- Browser showing ALB URL with instance ID visible
-- Refresh page to show different instance ID (load balancing)
-
-### 5. SSH Access Chain
-```bash
-# Terminal 1: SSH to bastion
-ssh -i techcorp-key.pem ec2-user@<BASTION_IP>
-
-# Terminal 2: From bastion to web server
-ssh techcorp@<WEB_PRIVATE_IP>
-
-# Terminal 3: From bastion to database
-ssh techcorp@<DB_PRIVATE_IP>
-psql -h localhost -U techcorp_user -d techcorp_db -c "SELECT * FROM users;"
-```
-
-## Additional Resources
-
-- [Terraform AWS Provider Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
-- [AWS VPC Documentation](https://docs.aws.amazon.com/vpc/)
-- [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/)
-- [AWS ELB Documentation](https://docs.aws.amazon.com/elasticloadbalancing/)
 
 ## Support
 
