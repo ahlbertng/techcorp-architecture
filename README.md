@@ -52,7 +52,7 @@ terraform-assessment/
 
 ## Setup Instructions
 
-### Step 1: Clone and Configure
+### Clone and Configure
 
 1. Copy the example variables file:
    ```bash
@@ -67,14 +67,14 @@ terraform-assessment/
    server_password = "YourSecurePassword123!"    # Change this!
    ```
 
-### Step 2: Initialize Terraform
+### Initialize Terraform
 
 ```bash
 # Initialize Terraform and download providers
 terraform init
 ```
 
-### Step 3: Review the Plan
+### Review the Plan
 
 ```bash
 # See what Terraform will create
@@ -83,7 +83,7 @@ terraform plan
 
 This will show you all the resources that will be created. Review carefully!
 
-### Step 4: Deploy Infrastructure
+### Deploy Infrastructure
 
 ```bash
 # Deploy the infrastructure
@@ -94,7 +94,7 @@ Type `yes` when prompted to confirm.
 
 **Note:** Deployment takes approximately 5-10 minutes.
 
-### Step 5: Get Outputs
+### Get Outputs
 
 ```bash
 # View important information about your deployment
