@@ -14,23 +14,23 @@ The infrastructure includes:
 
 Before you begin, ensure you have the following:
 
-1. **AWS Account** with appropriate permissions
-2. **AWS CLI** installed and configured
+**AWS Account** with appropriate permissions
+**AWS CLI** installed and configured
    ```bash
    aws configure
    ```
-3. **Terraform** installed (version >= 1.0)
+**Terraform** installed (version >= 1.0)
    ```bash
    # Download from https://www.terraform.io/downloads
    terraform --version
    ```
-4. **SSH Key Pair** created in your AWS region
+**SSH Key Pair** created in your AWS region
    ```bash
    # Create a key pair in AWS Console or via CLI:
    aws ec2 create-key-pair --key-name techcorp-key --query 'KeyMaterial' --output text > techcorp-key.pem
    chmod 400 techcorp-key.pem
    ```
-5. **Your Public IP Address**
+**Your Public IP Address**
    ```bash
    # Find your IP:
    curl ifconfig.me
@@ -54,12 +54,12 @@ terraform-assessment/
 
 ### Clone and Configure
 
-1. Copy the example variables file:
+Copy the example variables file:
    ```bash
    cp terraform.tfvars.example terraform.tfvars
    ```
 
-2. Edit `terraform.tfvars` with your actual values:
+Edit `terraform.tfvars` with your actual values:
    ```hcl
    aws_region    = "us-east-1"
    my_ip         = "YOUR.PUBLIC.IP.ADDRESS/32"  # Replace with your IP
@@ -105,7 +105,7 @@ Save these outputs! You'll need them to access your infrastructure.
 
 ## Accessing Your Infrastructure
 
-### 1. Access Bastion Host
+### Access Bastion Host
 
 **Option A: Using SSH Key**
 ```bash
@@ -118,7 +118,7 @@ ssh techcorp@<BASTION_PUBLIC_IP>
 # Password: The one you set in terraform.tfvars
 ```
 
-### 2. Access Web Servers from Bastion
+### Access Web Servers from Bastion
 
 Once on the bastion host:
 
@@ -131,7 +131,7 @@ ssh techcorp@<WEB_SERVER_1_PRIVATE_IP>
 ssh techcorp@<WEB_SERVER_2_PRIVATE_IP>
 ```
 
-### 3. Access Database Server from Bastion
+### Access Database Server from Bastion
 
 ```bash
 # SSH to database server
@@ -145,7 +145,7 @@ psql -h localhost -U techcorp_user -d techcorp_db
 SELECT * FROM users;
 ```
 
-### 4. Access Web Application
+### Access Web Application
 
 Open your browser and visit:
 ```
@@ -189,13 +189,13 @@ The infrastructure spans 2 availability zones:
 
 ## Important Security Notes
 
-⚠️ **Security Considerations:**
+**Security Considerations:**
 
-1. **SSH Access**: Bastion host only accepts SSH from your IP address
-2. **Password Authentication**: Enabled for ease of use (can be disabled for production)
-3. **Database Access**: Only accessible from web servers and bastion
-4. **Web Access**: Load balancer is publicly accessible on ports 80/443
-5. **Secrets**: Never commit `terraform.tfvars` or `terraform.tfstate` to version control
+**SSH Access**: Bastion host only accepts SSH from your IP address
+**Password Authentication**: Enabled for ease of use (can be disabled for production)
+**Database Access**: Only accessible from web servers and bastion
+**Web Access**: Load balancer is publicly accessible on ports 80/443
+**Secrets**: Never commit `terraform.tfvars` or `terraform.tfstate` to version control
 
 ## Troubleshooting
 
@@ -242,7 +242,7 @@ aws elbv2 describe-target-health --target-group-arn <TARGET_GROUP_ARN>
 
 ## Cleanup Instructions
 
-⚠️ **Important:** This will destroy all resources and cannot be undone!
+**Important:** This will destroy all resources and cannot be undone!
 
 ### Option 1: Terraform Destroy
 
@@ -256,14 +256,14 @@ Type `yes` when prompted.
 ### Option 2: Manual Cleanup (if Terraform fails)
 
 If `terraform destroy` fails, manually delete in this order:
-1. EC2 Instances
-2. Load Balancer
-3. Target Groups
-4. NAT Gateways
-5. Elastic IPs
-6. Internet Gateway
-7. Subnets
-8. VPC
+EC2 Instances
+Load Balancer
+Target Groups
+NAT Gateways
+Elastic IPs
+Internet Gateway
+Subnets
+VPC
 
 ### Verify Cleanup
 
@@ -272,19 +272,13 @@ If `terraform destroy` fails, manually delete in this order:
 aws ec2 describe-vpcs --filters "Name=tag:Name,Values=techcorp-vpc"
 ```
 
-💡 **Tip:** Run `terraform destroy` when not in use to avoid charges!
+**Tip:** Run `terraform destroy` when not in use to avoid charges!
 
 ## Support
 
 For issues or questions:
-1. Check the Troubleshooting section above
-2. Review Terraform error messages carefully
-3. Check AWS CloudWatch logs for instance initialization errors
-4. Verify all prerequisites are met
-
-## License
-
-This is an assessment project for educational purposes.
-
----
+Check the Troubleshooting section above
+Review Terraform error messages carefully
+Check AWS CloudWatch logs for instance initialization errors
+Verify all prerequisites are met
 
